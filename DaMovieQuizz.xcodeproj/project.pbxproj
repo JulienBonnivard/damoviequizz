@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		92FF493B1C527A73000DC58F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF493A1C527A73000DC58F /* main.m */; };
+		92FF493E1C527A73000DC58F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF493D1C527A73000DC58F /* AppDelegate.m */; };
+		92FF49411C527A73000DC58F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF49401C527A73000DC58F /* ViewController.m */; };
+		92FF49441C527A73000DC58F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF49421C527A73000DC58F /* Main.storyboard */; };
+		92FF49461C527A73000DC58F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92FF49451C527A73000DC58F /* Assets.xcassets */; };
+		92FF49491C527A73000DC58F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF49471C527A73000DC58F /* LaunchScreen.storyboard */; };
+		92FF49541C527A73000DC58F /* DaMovieQuizzTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF49531C527A73000DC58F /* DaMovieQuizzTests.m */; };
+		92FF495F1C527A73000DC58F /* DaMovieQuizzUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF495E1C527A73000DC58F /* DaMovieQuizzUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		92FF49501C527A73000DC58F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92FF492E1C527A72000DC58F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 92FF49351C527A72000DC58F;
+			remoteInfo = DaMovieQuizz;
+		};
+		92FF495B1C527A73000DC58F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92FF492E1C527A72000DC58F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 92FF49351C527A72000DC58F;
+			remoteInfo = DaMovieQuizz;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		92FF49361C527A72000DC58F /* DaMovieQuizz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaMovieQuizz.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		92FF493A1C527A73000DC58F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		92FF493C1C527A73000DC58F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		92FF493D1C527A73000DC58F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		92FF493F1C527A73000DC58F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		92FF49401C527A73000DC58F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		92FF49431C527A73000DC58F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		92FF49451C527A73000DC58F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		92FF49481C527A73000DC58F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		92FF494A1C527A73000DC58F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92FF494F1C527A73000DC58F /* DaMovieQuizzTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DaMovieQuizzTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		92FF49531C527A73000DC58F /* DaMovieQuizzTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DaMovieQuizzTests.m; sourceTree = "<group>"; };
+		92FF49551C527A73000DC58F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92FF495A1C527A73000DC58F /* DaMovieQuizzUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DaMovieQuizzUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		92FF495E1C527A73000DC58F /* DaMovieQuizzUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DaMovieQuizzUITests.m; sourceTree = "<group>"; };
+		92FF49601C527A73000DC58F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		92FF49331C527A72000DC58F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92FF494C1C527A73000DC58F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92FF49571C527A73000DC58F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		92FF492D1C527A72000DC58F = {
+			isa = PBXGroup;
+			children = (
+				92FF49381C527A72000DC58F /* DaMovieQuizz */,
+				92FF49521C527A73000DC58F /* DaMovieQuizzTests */,
+				92FF495D1C527A73000DC58F /* DaMovieQuizzUITests */,
+				92FF49371C527A72000DC58F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		92FF49371C527A72000DC58F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92FF49361C527A72000DC58F /* DaMovieQuizz.app */,
+				92FF494F1C527A73000DC58F /* DaMovieQuizzTests.xctest */,
+				92FF495A1C527A73000DC58F /* DaMovieQuizzUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		92FF49381C527A72000DC58F /* DaMovieQuizz */ = {
+			isa = PBXGroup;
+			children = (
+				92FF493C1C527A73000DC58F /* AppDelegate.h */,
+				92FF493D1C527A73000DC58F /* AppDelegate.m */,
+				92FF493F1C527A73000DC58F /* ViewController.h */,
+				92FF49401C527A73000DC58F /* ViewController.m */,
+				92FF49421C527A73000DC58F /* Main.storyboard */,
+				92FF49451C527A73000DC58F /* Assets.xcassets */,
+				92FF49471C527A73000DC58F /* LaunchScreen.storyboard */,
+				92FF494A1C527A73000DC58F /* Info.plist */,
+				92FF49391C527A73000DC58F /* Supporting Files */,
+			);
+			path = DaMovieQuizz;
+			sourceTree = "<group>";
+		};
+		92FF49391C527A73000DC58F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				92FF493A1C527A73000DC58F /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		92FF49521C527A73000DC58F /* DaMovieQuizzTests */ = {
+			isa = PBXGroup;
+			children = (
+				92FF49531C527A73000DC58F /* DaMovieQuizzTests.m */,
+				92FF49551C527A73000DC58F /* Info.plist */,
+			);
+			path = DaMovieQuizzTests;
+			sourceTree = "<group>";
+		};
+		92FF495D1C527A73000DC58F /* DaMovieQuizzUITests */ = {
+			isa = PBXGroup;
+			children = (
+				92FF495E1C527A73000DC58F /* DaMovieQuizzUITests.m */,
+				92FF49601C527A73000DC58F /* Info.plist */,
+			);
+			path = DaMovieQuizzUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		92FF49351C527A72000DC58F /* DaMovieQuizz */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92FF49631C527A73000DC58F /* Build configuration list for PBXNativeTarget "DaMovieQuizz" */;
+			buildPhases = (
+				92FF49321C527A72000DC58F /* Sources */,
+				92FF49331C527A72000DC58F /* Frameworks */,
+				92FF49341C527A72000DC58F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DaMovieQuizz;
+			productName = DaMovieQuizz;
+			productReference = 92FF49361C527A72000DC58F /* DaMovieQuizz.app */;
+			productType = "com.apple.product-type.application";
+		};
+		92FF494E1C527A73000DC58F /* DaMovieQuizzTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92FF49661C527A73000DC58F /* Build configuration list for PBXNativeTarget "DaMovieQuizzTests" */;
+			buildPhases = (
+				92FF494B1C527A73000DC58F /* Sources */,
+				92FF494C1C527A73000DC58F /* Frameworks */,
+				92FF494D1C527A73000DC58F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				92FF49511C527A73000DC58F /* PBXTargetDependency */,
+			);
+			name = DaMovieQuizzTests;
+			productName = DaMovieQuizzTests;
+			productReference = 92FF494F1C527A73000DC58F /* DaMovieQuizzTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		92FF49591C527A73000DC58F /* DaMovieQuizzUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92FF49691C527A73000DC58F /* Build configuration list for PBXNativeTarget "DaMovieQuizzUITests" */;
+			buildPhases = (
+				92FF49561C527A73000DC58F /* Sources */,
+				92FF49571C527A73000DC58F /* Frameworks */,
+				92FF49581C527A73000DC58F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				92FF495C1C527A73000DC58F /* PBXTargetDependency */,
+			);
+			name = DaMovieQuizzUITests;
+			productName = DaMovieQuizzUITests;
+			productReference = 92FF495A1C527A73000DC58F /* DaMovieQuizzUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		92FF492E1C527A72000DC58F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = JB;
+				TargetAttributes = {
+					92FF49351C527A72000DC58F = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					92FF494E1C527A73000DC58F = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 92FF49351C527A72000DC58F;
+					};
+					92FF49591C527A73000DC58F = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 92FF49351C527A72000DC58F;
+					};
+				};
+			};
+			buildConfigurationList = 92FF49311C527A72000DC58F /* Build configuration list for PBXProject "DaMovieQuizz" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 92FF492D1C527A72000DC58F;
+			productRefGroup = 92FF49371C527A72000DC58F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				92FF49351C527A72000DC58F /* DaMovieQuizz */,
+				92FF494E1C527A73000DC58F /* DaMovieQuizzTests */,
+				92FF49591C527A73000DC58F /* DaMovieQuizzUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		92FF49341C527A72000DC58F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92FF49491C527A73000DC58F /* LaunchScreen.storyboard in Resources */,
+				92FF49461C527A73000DC58F /* Assets.xcassets in Resources */,
+				92FF49441C527A73000DC58F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92FF494D1C527A73000DC58F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92FF49581C527A73000DC58F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		92FF49321C527A72000DC58F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92FF49411C527A73000DC58F /* ViewController.m in Sources */,
+				92FF493E1C527A73000DC58F /* AppDelegate.m in Sources */,
+				92FF493B1C527A73000DC58F /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92FF494B1C527A73000DC58F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92FF49541C527A73000DC58F /* DaMovieQuizzTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92FF49561C527A73000DC58F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92FF495F1C527A73000DC58F /* DaMovieQuizzUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		92FF49511C527A73000DC58F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 92FF49351C527A72000DC58F /* DaMovieQuizz */;
+			targetProxy = 92FF49501C527A73000DC58F /* PBXContainerItemProxy */;
+		};
+		92FF495C1C527A73000DC58F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 92FF49351C527A72000DC58F /* DaMovieQuizz */;
+			targetProxy = 92FF495B1C527A73000DC58F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		92FF49421C527A73000DC58F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				92FF49431C527A73000DC58F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		92FF49471C527A73000DC58F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				92FF49481C527A73000DC58F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		92FF49611C527A73000DC58F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		92FF49621C527A73000DC58F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		92FF49641C527A73000DC58F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = DaMovieQuizz/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jb.damoviequizz.DaMovieQuizz;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		92FF49651C527A73000DC58F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = DaMovieQuizz/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jb.damoviequizz.DaMovieQuizz;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		92FF49671C527A73000DC58F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = DaMovieQuizzTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jb.damoviequizz.DaMovieQuizzTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DaMovieQuizz.app/DaMovieQuizz";
+			};
+			name = Debug;
+		};
+		92FF49681C527A73000DC58F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = DaMovieQuizzTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jb.damoviequizz.DaMovieQuizzTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DaMovieQuizz.app/DaMovieQuizz";
+			};
+			name = Release;
+		};
+		92FF496A1C527A73000DC58F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = DaMovieQuizzUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jb.damoviequizz.DaMovieQuizzUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = DaMovieQuizz;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		92FF496B1C527A73000DC58F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = DaMovieQuizzUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jb.damoviequizz.DaMovieQuizzUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = DaMovieQuizz;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		92FF49311C527A72000DC58F /* Build configuration list for PBXProject "DaMovieQuizz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92FF49611C527A73000DC58F /* Debug */,
+				92FF49621C527A73000DC58F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92FF49631C527A73000DC58F /* Build configuration list for PBXNativeTarget "DaMovieQuizz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92FF49641C527A73000DC58F /* Debug */,
+				92FF49651C527A73000DC58F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		92FF49661C527A73000DC58F /* Build configuration list for PBXNativeTarget "DaMovieQuizzTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92FF49671C527A73000DC58F /* Debug */,
+				92FF49681C527A73000DC58F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		92FF49691C527A73000DC58F /* Build configuration list for PBXNativeTarget "DaMovieQuizzUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92FF496A1C527A73000DC58F /* Debug */,
+				92FF496B1C527A73000DC58F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 92FF492E1C527A72000DC58F /* Project object */;
+}
