@@ -21,8 +21,8 @@
     
     [[JLTMDbClient sharedAPIInstance] GET:kJLTMDbMoviePopular withParameters:nil andResponseBlock:^(id response, NSError *error) {
         if(!error){
-            fetchedData = response;
-            NSLog(@"Popular Movies: %@",fetchedData);
+        NSString*    fetchedData = response;
+           NSLog(@"Popular Movies: %@",fetchedData);
         }
     }];
 }

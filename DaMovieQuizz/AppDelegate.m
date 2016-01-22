@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import <JLTMDbClient.h>
+#import "JLTMDbClient.h"
 
 @interface AppDelegate ()
 
