@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "JLTMDbClient.h"
 
 @interface ViewController ()
 
@@ -17,6 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    [[JLTMDbClient sharedAPIInstance] GET:kJLTMDbMoviePopular withParameters:nil andResponseBlock:^(id response, NSError *error) {
+        if(!error){
+            fetchedData = response;
+            NSLog(@"Popular Movies: %@",fetchedData);
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

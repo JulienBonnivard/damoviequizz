@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <JLTMDbClient.h>
 
 @interface AppDelegate ()
 
@@ -16,6 +17,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[JLTMDbClient sharedAPIInstance] setAPIKey:@"7ea5f490261a949e52930517e1b4657c"];
+
     // Override point for customization after application launch.
     return YES;
 }
