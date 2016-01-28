@@ -19,14 +19,19 @@
 
 @property (strong, nonatomic) NSArray *moviesArray;
 
+@property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (copy, nonatomic) NSString *randomStringId;
 
 
 @property (copy, nonatomic) NSString *imagesBaseUrlString;
 @property (strong, nonatomic) IBOutlet UIImageView *actorCoverImageView;
 
+@property (strong, nonatomic) IBOutlet UILabel *progress;
 
 @property(nonatomic, strong) NSMutableArray         *arrayMovie;
+
+@property (copy, nonatomic) NSString *idMovie;
+@property (copy, nonatomic) NSString *idActor;
 
 
 
