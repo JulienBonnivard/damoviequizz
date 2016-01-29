@@ -1,17 +1,24 @@
 #import "UserConfig.h"
 #import "JSON.h"
 
-NSString *const ACTOR_STORE = @"actor";
+NSString *const ACTOR_NOT_IN_MOVIE_STORE = @"actorNotInMovie";
+NSString *const ACTOR_IN_MOVIE_STORE = @"actorInMovie";
+
 NSString *const MOVIE_STORE = @"movie";
 
 @implementation UserConfig
+@synthesize movieList,actorInMovieList,actorNotInMovieList;
 
-- (NSString *) actorFile{
+- (NSString *) actorNotInMovieFile{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    return [NSString stringWithFormat:@"%@/%@.data", documentsDirectory,ACTOR_STORE];
+    return [NSString stringWithFormat:@"%@/%@.data", documentsDirectory,ACTOR_NOT_IN_MOVIE_STORE];
 }
-
+- (NSString *) actorInMovieFile{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    return [NSString stringWithFormat:@"%@/%@.data", documentsDirectory,ACTOR_IN_MOVIE_STORE];
+}
 - (NSString *) movieFile{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -29,28 +36,46 @@ NSString *const MOVIE_STORE = @"movie";
     }
     return self.movieList;
 }
-- (NSMutableDictionary *)loadActor {
+- (NSMutableDictionary *)loadActorNotInMovie {
     NSMutableDictionary *dict = nil;
-    NSLog(@"%@",[self actorFile]);
-    NSData * data = [NSData dataWithContentsOfFile:[self actorFile]];
+    NSLog(@"%@",[self actorNotInMovieFile]);
+    NSData * data = [NSData dataWithContentsOfFile:[self actorNotInMovieFile]];
     if(data != nil)
     {
         dict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        self.actorList = dict;
+        self.actorNotInMovieList = dict;
     }
-    return self.actorList;
+    return self.actorNotInMovieList;
 }
 
-- (BOOL)archivingActor:(NSMutableDictionary *) actorDict {
+- (NSMutableDictionary *)loadActorInMovie {
+    NSMutableDictionary *dict = nil;
+    NSLog(@"%@",[self actorNotInMovieFile]);
+    NSData * data = [NSData dataWithContentsOfFile:[self actorNotInMovieFile]];
+    if(data != nil)
+    {
+        dict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        self.actorInMovieList = dict;
+    }
+    return self.actorInMovieList;
+}
+- (BOOL)archivingActorNotInMovie:(NSMutableDictionary *) actorDict {
     
     NSData * data = [NSKeyedArchiver archivedDataWithRootObject:[actorDict mutableCopy]];
-    if ([data writeToFile:[self actorFile] atomically:YES])
+    if ([data writeToFile:[self actorNotInMovieFile] atomically:YES])
         return true;
     else
         return false;
 }
 
-
+- (BOOL)archivingActorInMovie:(NSMutableDictionary *) actorDict {
+    
+    NSData * data = [NSKeyedArchiver archivedDataWithRootObject:[actorDict mutableCopy]];
+    if ([data writeToFile:[self actorInMovieFile] atomically:YES])
+        return true;
+    else
+        return false;
+}
 - (BOOL)archivingMovie:(NSMutableDictionary *) movieDict {
     
     NSData * data = [NSKeyedArchiver archivedDataWithRootObject:[movieDict mutableCopy]];
@@ -58,6 +83,16 @@ NSString *const MOVIE_STORE = @"movie";
         return true;
     else
         return false;
+}
++ (UserConfig*)sharedInstance
+{
+    static UserConfig *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[UserConfig alloc] init];
+        // Do any other initialisation stuff here
+    });
+    return sharedInstance;
 }
 
 @end

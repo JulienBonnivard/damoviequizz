@@ -1,21 +1,23 @@
-#import <UIKit/UIKit.h>
-#import "Actor.h"
-#import "Utility.h"
-
-@class Actor;
 
 @interface UserConfig : NSObject
 
-@property (nonatomic,strong) NSMutableDictionary *actorList;
+@property (nonatomic,strong) NSMutableDictionary *actorNotInMovieList;
+@property (nonatomic,strong) NSMutableDictionary *actorInMovieList;
 @property (nonatomic,strong) NSMutableDictionary *movieList;
 
-- (NSString *) actorFile;
+- (NSString *) actorNotInMovieFile;
+- (NSString *) actorInMovieFile;
 - (NSString *) movieFile;
 
 - (NSMutableDictionary *)loadMovie;
-- (NSMutableDictionary *)loadActor;
+- (NSMutableDictionary *)loadActorNotInMovie;
+- (NSMutableDictionary *)loadActorInMovie;
 
-- (BOOL)archivingActor:(NSMutableDictionary *) actorDict;
+- (BOOL)archivingActorNotInMovie:(NSMutableDictionary *) actorDict;
+- (BOOL)archivingActorInMovie:(NSMutableDictionary *) actorDict ;
+
 - (BOOL)archivingMovie:(NSMutableDictionary *) movieDict;
+
++ (UserConfig*)sharedInstance;
 
 @end

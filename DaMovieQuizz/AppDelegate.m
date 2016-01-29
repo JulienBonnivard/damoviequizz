@@ -18,6 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[JLTMDbClient sharedAPIInstance] setAPIKey:@"7ea5f490261a949e52930517e1b4657c"];
+    [[DataSourceManager sharedInstance] loadConfiguration];
+    [[DataSourceManager sharedInstance] saveActorNotInMovie];
+    [[DataSourceManager sharedInstance] saveMovie];
 
     // Override point for customization after application launch.
     return YES;

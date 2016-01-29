@@ -6,17 +6,25 @@
 //  Copyright © 2016 JB. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "Actor.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController{
+    NSString *urlFront;
+    IBOutlet UIButton *yesButton;
+    IBOutlet UIButton *noButton;
+    NSString* algoBoolActor;
+    NSString *idActorRandom;
+}
 
 @property (weak, nonatomic) IBOutlet UIImageView *movieCoverImageView;
 @property (strong, nonatomic) NSDictionary *movieDict;
 @property (strong, nonatomic) NSMutableDictionary *moviesDict;
 @property (strong, nonatomic) NSMutableDictionary *actorInMovieDict;
+@property (strong, nonatomic) NSMutableDictionary *actorInNotMovieDict;
 
 
+
+@property (strong, nonatomic) IBOutlet UIButton *startGameButton;
 @property (strong, nonatomic) NSArray *moviesArray;
 
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
