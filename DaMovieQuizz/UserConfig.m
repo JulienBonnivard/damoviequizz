@@ -50,8 +50,8 @@ NSString *const MOVIE_STORE = @"movie";
 
 - (NSMutableDictionary *)loadActorInMovie {
     NSMutableDictionary *dict = nil;
-    NSLog(@"%@",[self actorNotInMovieFile]);
-    NSData * data = [NSData dataWithContentsOfFile:[self actorNotInMovieFile]];
+    NSLog(@"%@",[self actorInMovieFile]);
+    NSData * data = [NSData dataWithContentsOfFile:[self actorInMovieFile]];
     if(data != nil)
     {
         dict = [NSKeyedUnarchiver unarchiveObjectWithData:data];

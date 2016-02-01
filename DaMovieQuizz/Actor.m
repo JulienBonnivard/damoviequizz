@@ -24,7 +24,7 @@
         
         self.idActor = [decoder decodeObjectForKey:@"idActor"];
         self.urlImage = [decoder decodeObjectForKey:@"urlImage"];
-          }
+    }
     return self;
 }
 
