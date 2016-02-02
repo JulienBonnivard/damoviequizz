@@ -22,6 +22,7 @@
     [[DataSourceManager sharedInstance] saveActorNotInMovie];
     [[DataSourceManager sharedInstance] saveMovie];
 
+    [[UserConfig sharedInstance]Load];
     // Override point for customization after application launch.
     return YES;
 }

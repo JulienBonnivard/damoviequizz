@@ -26,6 +26,8 @@
     noButton.hidden=YES;
     progress.hidden=YES;
     firstGame = YES;
+    bestScore.text= [NSString stringWithFormat:@"Meilleur score : %@",[[UserConfig sharedInstance]bestScore]];
+
 }
 
 -(IBAction)beginGame:(id)sender{
@@ -82,7 +84,6 @@
 - (void)_timerFired:(NSTimer *)timer {
     
     //Timer avec minutes et secondes à afficher
-    
     //NSLog(@"ping");
     //    if ([progress.text intValue]== 60){
     //        int secInt = [progress.text intValue];
@@ -100,9 +101,13 @@
     NSArray *array = [moviesDict allKeys];
     int random = arc4random()%[array count];
     randomStringId = [array objectAtIndex:random];
-    if (randomStringId !=nil){
-        [self loadActor : randomStringId];
-    }
+    
+    //if (randomStringId !=nil){
+    // [self performSelectorInBackground:@selector(loadActor:) withObject:randomStringId];
+    //dispatch_async( dispatch_get_main_queue(), ^{
+    [self loadActor : randomStringId];
+    //     });
+    // }
     for(NSString *movie in moviesDict){
         if ([randomStringId isEqualToString:movie]){
             imageBackdrop = [urlFront stringByReplacingOccurrencesOfString:@"w92" withString:@"w500"];
@@ -113,45 +118,61 @@
 }
 
 -(void)loadActor : (NSString *)idMovieSend{
-    
-    int randomBool = arc4random_uniform(2); //
-    algoBoolActor = [NSString stringWithFormat:@"%d",randomBool];
-    //algoBoolActor =@"1";
-    NSString *imageBackdrop;
-    
-    if ([algoBoolActor isEqualToString:@"1"]){
-        if( [[(Movie *)[moviesDict objectForKey:idMovieSend]idActors] allKeys] !=nil){
-            NSArray *array =  [[(Movie *)[moviesDict objectForKey:idMovieSend]idActors] allKeys];
+    @synchronized(self)
+    {
+        int randomBool = arc4random_uniform(2); //
+        algoBoolActor = [NSString stringWithFormat:@"%d",randomBool];
+        // algoBoolActor =@"0";
+        NSString *imageBackdrop;
+        // NSLog(@"algoBool : %@ id moviesend %@" ,algoBoolActor, idMovieSend);
+        
+        
+        if ([algoBoolActor isEqualToString:@"1"]){
             
-            int random = arc4random()%[array count];
-            idActorRandom = [array objectAtIndex:random];
+            //  Movie* movie = (Movie *)[moviesDict objectForKey:idMovieSend];
+            //   NSLog(@"Movies movie : %@",[[(Movie *)[moviesDict objectForKey:idMovieSend] idActors] allKeys]);
             
-            //ressort tous les acteurs dans les films qu'on a mis récupérer mais pas tous les acteurs du films affiché ( ajouter une deuxieme rêquete pour affiner la recherche)
-            for(NSString *idActorfFromMovie in [(Movie *)[moviesDict objectForKey:idMovieSend]idActors]){
-                //           if (actorInMovieDict != [NSNull null]) {
-                if ([idActorRandom isEqualToString: idActorfFromMovie]){
-                    imageBackdrop = [urlFront stringByReplacingOccurrencesOfString:@"w92" withString:@"w500"];
-                    NSLog(@"Réponse oui");
+            //            if ([[movie idActors] allKeys] == nil)
+            //            {
+            //                NSLog(@"NULLLLL");
+            //            }
+            if( [[(Movie *)[moviesDict objectForKey:idMovieSend] idActors] allKeys] !=nil){
+                NSArray *array =  [[(Movie *)[moviesDict objectForKey:idMovieSend]idActors] allKeys];
+                int random = arc4random()%[array count];
+                idActorRandom = [array objectAtIndex:random];
+                
+                for(NSString *idActorfFromMovie in [(Movie *)[moviesDict objectForKey:idMovieSend]idActors]){
+                    //           if (actorInMovieDict != [NSNull null]) {
                     
-                    [self.actorCoverImageView setImageWithURL:[NSURL URLWithString:[imageBackdrop stringByAppendingString:[(Actor*)[actorInMovieDict objectForKey:idActorRandom]urlImage]]]];
-                    
-                    break;
+                    if ([idActorRandom isEqualToString: idActorfFromMovie]){
+                        imageBackdrop = [urlFront stringByReplacingOccurrencesOfString:@"w92" withString:@"w500"];
+                        NSLog(@"Réponse oui");
+                        
+                        [self.actorCoverImageView setImageWithURL:[NSURL URLWithString:[imageBackdrop stringByAppendingString:[(Actor*)[actorInMovieDict objectForKey:idActorRandom]urlImage]]]];
+                        
+                        break;
+                    }
                 }
             }
+            else{
+                [self loadActor:idMovieSend];
+            }
+            //NSLog(@"DICO ACTOR IN MOVIE : %@",[moviesDict description]);
+            //NSLog(@"actorlist : %@",userConfig.actorList);
         }
-        //NSLog(@"DICO ACTOR IN MOVIE : %@",[moviesDict description]);
-        //NSLog(@"actorlist : %@",userConfig.actorList);
-    }
-    
-    else{
-        NSArray *array = [actorInNotMovieDict allKeys]; int random = arc4random()%[array count];
-        idActorRandom = [array objectAtIndex:random];
-        for(NSString *urlMovie in actorInNotMovieDict){
-            if ([idActorRandom isEqualToString:urlMovie]){
-                imageBackdrop = [urlFront stringByReplacingOccurrencesOfString:@"w92" withString:@"w500"];
-                NSLog(@"Réponse non");
-                [self.actorCoverImageView setImageWithURL:[NSURL URLWithString:[imageBackdrop stringByAppendingString:[(Actor*)[actorInNotMovieDict objectForKey:idActorRandom]urlImage]]]];
-                break;
+        
+        else{
+            NSArray *array = [actorInNotMovieDict allKeys]; int random = arc4random()%[array count];
+            idActorRandom = [array objectAtIndex:random];
+            
+            for(NSString *urlMovie in actorInNotMovieDict){
+                
+                if ([idActorRandom isEqualToString:urlMovie]){
+                    imageBackdrop = [urlFront stringByReplacingOccurrencesOfString:@"w92" withString:@"w500"];
+                    NSLog(@"Réponse non");
+                    [self.actorCoverImageView setImageWithURL:[NSURL URLWithString:[imageBackdrop stringByAppendingString:[(Actor*)[actorInNotMovieDict objectForKey:idActorRandom]urlImage]]]];
+                    break;
+                }
             }
         }
     }
@@ -168,14 +189,8 @@
     }
     else{
         if (!goodAnswer){
-            [self stopTimer];
-            [self disableButtons];
-            
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"LOOSER" message:@"GAME OVER" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-            [alertController addAction:okAction];
-            [self presentViewController:alertController animated:YES completion:nil];
-            scoreLabel.text=@"0";
+            [self saveScore];
+
         }
     }
 }
@@ -188,15 +203,33 @@
     }
     
     else{
-        [self stopTimer];
-        [self disableButtons];
+        [self saveScore];
+           }
+}
+-(void)saveScore{
+    [self stopTimer];
+    [self disableButtons];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Mauvaise réponse" message:@"GAME OVER" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+    int scoreInt = [scoreLabel.text integerValue];
+    int bestScoreInt =[[[UserConfig sharedInstance] bestScore ]integerValue];
+    
+    if (scoreInt <= bestScoreInt){
         
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"LOOSER" message:@"GAME OVER" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-        [alertController addAction:okAction];
-        [self presentViewController:alertController animated:YES completion:nil];
-        scoreLabel.text=[NSString stringWithFormat:@"0"];
     }
+    else{
+        [[UserConfig sharedInstance]setBestScore:scoreLabel.text];
+        [[UserConfig sharedInstance]Save];
+        [[UserConfig sharedInstance]Load];
+        
+        bestScore.text=[NSString stringWithFormat:@"Meilleur score : %@",[[UserConfig sharedInstance]bestScore]];
+    }
+    scoreLabel.text=[NSString stringWithFormat:@"0"];
+    
 }
 - (NSDictionary *) indexKeyedDictionaryFromArray:(NSArray *)array
 {

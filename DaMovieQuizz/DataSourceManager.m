@@ -8,11 +8,12 @@
 @synthesize actorInMovieDict,actorNotInMovieDict,moviesDict,idMovie,imagesBaseUrlString;
 
 -(void)saveMovie{
-    moviesDict =[[NSMutableDictionary alloc] init];
     
+    if(moviesDict == nil)
+        moviesDict = [[NSMutableDictionary alloc] init];
+
     __block UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Erreur lors de la sauvegarde des films", @"") message:NSLocalizedString(@"Veuillez relancer l'application", @"") delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Ok", @""), nil];
     
-    //[moviesDict removeAllObjects];
     for (int i = 1; i <= 4; i++){
         
         int randomBool = arc4random() %(30)-1; //
@@ -26,7 +27,8 @@
                 for (NSDictionary *movieDic in moviesResult){
                     NSString *posterURL = @"";
                     
-                    if ([movieDic objectForKey:@"poster_path" ] == [NSNull null]) {
+                    if ([movieDic objectForKey:@"poster_path" ] == [NSNull null]
+                        || [movieDic objectForKey:@"id" ] == [NSNull null]) {
                     }
                     
                     else{
@@ -46,7 +48,7 @@
                 //   NSLog(@"COUNT ARRAY MOVIES : %lu et RANDOM ID : %@", (unsigned long)[array count], randomStringId);
                 //   NSLog(@"DICO MOVIE : %@", [[[UserConfig sharedInstance]movieList]description]);
             }else{
-                [errorAlertView show];
+              //  [errorAlertView show];
             }
         }];
     }
@@ -62,44 +64,51 @@
             //    if (actorsDico [@"profile_path"]!=[NSNull null]){
             //        NSLog(@"POUETTTE");
             //    }
+            Movie* movie = [moviesDict objectForKey:idMovieSend];
+
             for (NSDictionary *actorDic in actorsDico){
                 NSString *idActorString = @"",*imageActor=@"";
                 
-                
                 if ([actorDic objectForKey:@"name"]!=nil){
                     
-                    if ([actorDic objectForKey:@"profile_path" ] == [NSNull null] || [actorDic objectForKey:@"name"] == [NSNull null]){
-                        
+                    if ([actorDic objectForKey:@"profile_path" ] == [NSNull null] || [actorDic objectForKey:@"name"] == [NSNull null] || [actorForAMovieDict objectForKey:@"id"] == [NSNull null]){
                         //   NSLog(@"VIDE  profile : %@ ou name : %@",[actorDic objectForKey:@"profile_path" ],[actorDic objectForKey:@"profile_path" ]);
-                        
                     }
                     else{
                         idActorString = [NSString stringWithFormat:@"%@",[actorDic objectForKey:@"id"]];
                         imageActor = [actorDic objectForKey:@"profile_path"];
                         
-                        
                         Actor *newActor = [[Actor alloc]init:idActorString url:imageActor];
                         [actorForAMovieDict setObject:newActor forKey:idActorString];
                         [actorInMovieDict setObject:newActor forKey:idActorString];
                         
-                        Movie* movie = [moviesDict objectForKey:idMovieSend];
                         [movie setIdActors:actorForAMovieDict];
-                        
                         [moviesDict setObject:movie forKey:idMovieSend];
                         //  NSLog(@"COMPLET : %@ et %@", idActorString,imageActor);
                     }
                     
                     //  NSLog(@"\nMovie id %@ actor %@\n", idMovieSend, [actorDic objectForKey:@"name"]);
                     //  NSLog(@"id actor : %@ et  image ACTOR: %@",idActorString,imageActor);
-                    
+                    // NSLog(@"IDSACTOR ALL KEYS : %@ MOVIE ID : %@", [[movie idActors]allKeys], idMovieSend);
+                    // NSLog(@"Movie Id : %@ MoviesDict : %@ ",idMovieSend ,[[[moviesDict objectForKey:idMovieSend]idActors]allKeys]);
+
                 }
             }
+            if ([movie idActors] == nil || [[movie idActors] allKeys] == nil )
+            {
+                [moviesDict removeObjectForKey:idMovieSend];
+            }
             
-            [[[UserConfig sharedInstance] movieList]setDictionary:moviesDict];
-            [[UserConfig sharedInstance] archivingMovie:moviesDict];
             [[[UserConfig sharedInstance] actorInMovieList]setDictionary:actorInMovieDict];
             [[UserConfig sharedInstance] archivingActorInMovie: actorInMovieDict];
             
+            
+            [[[UserConfig sharedInstance] movieList]setDictionary:moviesDict];
+            
+            [[UserConfig sharedInstance] archivingMovie:moviesDict];
+            
+            //NSLog(@"Movie Id : %@ MoviesDict : %@ ",idMovieSend ,[[[moviesDict objectForKey:idMovie]idActors]allKeys]);
+            //NSLog(@"MoviesDict : %@ ", [[moviesDict objectForKey:idMovie]urlImage]);
             // NSLog(@"Dico actor in movie : %@",[actorInMovieDict description]);
         }else{
             // [errorAlertView show];
@@ -145,8 +154,9 @@
     [[JLTMDbClient sharedAPIInstance] GET:kJLTMDbConfiguration withParameters:nil andResponseBlock:^(id response, NSError *error) {
         if (!error)
             imagesBaseUrlString = [response[@"images"][@"base_url"] stringByAppendingString:@"w92"];
-        else
-            [errorAlertView show];
+        else{
+            //[errorAlertView show];
+        }
     }];
 }
 + (DataSourceManager*)sharedInstance{

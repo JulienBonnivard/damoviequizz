@@ -4,6 +4,7 @@
 @property (nonatomic,strong) NSMutableDictionary *actorNotInMovieList;
 @property (nonatomic,strong) NSMutableDictionary *actorInMovieList;
 @property (nonatomic,strong) NSMutableDictionary *movieList;
+@property(nonatomic,strong)  NSString	*bestScore;
 
 - (NSString *) actorNotInMovieFile;
 - (NSString *) actorInMovieFile;
@@ -20,4 +21,7 @@
 
 + (UserConfig*)sharedInstance;
 
+- (void)Save;
+- (BOOL)Load;
+- (void)Init;
 @end

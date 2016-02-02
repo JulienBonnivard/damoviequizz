@@ -3,11 +3,52 @@
 
 NSString *const ACTOR_NOT_IN_MOVIE_STORE = @"actorNotInMovie";
 NSString *const ACTOR_IN_MOVIE_STORE = @"actorInMovie";
-
 NSString *const MOVIE_STORE = @"movie";
+NSString *const CONFIG_STORE = @"config1.0.0.data";
+
 
 @implementation UserConfig
-@synthesize movieList,actorInMovieList,actorNotInMovieList;
+@synthesize movieList,actorInMovieList,actorNotInMovieList,bestScore=_bestScore;
+
+-(void)Init{
+    [self setBestScore:@"0"];
+}
+- (BOOL)Load {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *file = [NSString	stringWithFormat:@"%@/%@", documentsDirectory,CONFIG_STORE];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:file];
+    
+    if (dict != nil)
+    {
+        [self setBestScore:[dict objectForKey:@"bestScore"]];
+        
+        return TRUE;
+    } else{
+        [self Init];
+        [self Save];
+        return FALSE;
+    }
+}
+
+- (void)Save {
+    @try {
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                              _bestScore,@"bestScore",
+                                                            nil];
+        
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        
+        NSString *file = [NSString	stringWithFormat:@"%@/%@", documentsDirectory,CONFIG_STORE];
+        
+        [dict writeToFile:file atomically:YES];
+        
+    } @catch (NSException *e) {
+        
+    }
+}
 
 - (NSString *) actorNotInMovieFile{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

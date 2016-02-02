@@ -15,6 +15,7 @@
     NSString* algoBoolActor;
     NSString *idActorRandom;
     BOOL firstGame;
+    IBOutlet UILabel *bestScore;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *movieCoverImageView;
