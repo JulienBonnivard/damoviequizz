@@ -27,8 +27,6 @@
     progress.hidden=YES;
     firstGame = YES;
     bestScore.text= [NSString stringWithFormat:@"Meilleur score : %@",[[UserConfig sharedInstance]bestScore]];
-    //gamerDict = [[NSMutableDictionary alloc] init];
-    
 }
 
 -(IBAction)beginGame:(id)sender{
@@ -40,7 +38,6 @@
         urlFront =[[DataSourceManager sharedInstance]imagesBaseUrlString];
         firstGame= NO;
         scoreLabel.text=@"0";
-        
     }
     // NSLog(@"count :%lu",  (unsigned long)[actorInNotMovieDict count]);
     progress.hidden= NO;
@@ -84,32 +81,17 @@
 }
 
 - (void)_timerFired:(NSTimer *)timer {
-    
-    //Timer avec minutes et secondes à afficher
-    //NSLog(@"ping");
-    //    if ([progress.text intValue]== 60){
-    //        int secInt = [progress.text intValue];
-    //        int minIn = 1;
-    //        [progress setText:[NSString stringWithFormat:@" %d min %d sec", minIn +1 ,secInt +1]];
-    //
-    //    }else{
     int secInt = [progress.text intValue];
     [progress setText:[NSString stringWithFormat:@"%d sec", secInt +1]];
-    // }
 }
 -(void)loadGame{
-    
     NSString *imageBackdrop;
     NSArray *array = [moviesDict allKeys];
     int random = arc4random()%[array count];
     randomStringId = [array objectAtIndex:random];
     
-    //if (randomStringId !=nil){
-    // [self performSelectorInBackground:@selector(loadActor:) withObject:randomStringId];
-    //dispatch_async( dispatch_get_main_queue(), ^{
     [self loadActor : randomStringId];
-    //     });
-    // }
+    
     for(NSString *movie in moviesDict){
         if ([randomStringId isEqualToString:movie]){
             imageBackdrop = [urlFront stringByReplacingOccurrencesOfString:@"w92" withString:@"w500"];
@@ -124,20 +106,11 @@
     {
         int randomBool = arc4random_uniform(2); //
         algoBoolActor = [NSString stringWithFormat:@"%d",randomBool];
-        // algoBoolActor =@"0";
         NSString *imageBackdrop;
         // NSLog(@"algoBool : %@ id moviesend %@" ,algoBoolActor, idMovieSend);
         
-        
         if ([algoBoolActor isEqualToString:@"1"]){
             
-            //  Movie* movie = (Movie *)[moviesDict objectForKey:idMovieSend];
-            //   NSLog(@"Movies movie : %@",[[(Movie *)[moviesDict objectForKey:idMovieSend] idActors] allKeys]);
-            
-            //            if ([[movie idActors] allKeys] == nil)
-            //            {
-            //                NSLog(@"NULLLLL");
-            //            }
             if( [[(Movie *)[moviesDict objectForKey:idMovieSend] idActors] allKeys] !=nil){
                 NSArray *array =  [[(Movie *)[moviesDict objectForKey:idMovieSend]idActors] allKeys];
                 int random = arc4random()%[array count];
@@ -197,13 +170,11 @@
     }
 }
 -(IBAction)noButton:(id)sender{
-    
     if (![algoBoolActor isEqualToString:@"1"]){
         int scoreInt = [scoreLabel.text intValue];
         [scoreLabel setText:[NSString stringWithFormat:@"%d", scoreInt +1]];
         [self loadGame];
     }
-    
     else{
         [self saveScore];
     }
@@ -272,6 +243,8 @@
                                                            [self stopTimer];
                                                            scoreLabel.text=[NSString stringWithFormat:@"0"];
                                                            
+                                                           [self highScoringScreen];
+                                                           
                                                        }];
             UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
                                                            handler:^(UIAlertAction * action) {
@@ -280,6 +253,7 @@
                                                                
                                                                [alert dismissViewControllerAnimated:YES completion:nil];
                                                                
+                                                               [self highScoringScreen];
                                                            }];
             
             [alert addAction:ok];
@@ -296,11 +270,37 @@
                 [[UserConfig sharedInstance]Save];
                 [[UserConfig sharedInstance]Load];
             }
-            
-            
             bestScore.text=[NSString stringWithFormat:@"Meilleur score : %@",[[UserConfig sharedInstance]bestScore]];
         }
     }
+}
+-(void)highScoringScreen{
+    
+    NSArray* allGamerScoreArray = [gamerDict allValues];
+    bestPlayersArray = [[NSMutableArray alloc] init];
+    
+    NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"score" ascending:YES];
+    NSArray *descriptors = [NSArray arrayWithObject:valueDescriptor];
+    allGamerScoreArray = [allGamerScoreArray sortedArrayUsingDescriptors:descriptors];
+    
+    NSUInteger count =[allGamerScoreArray count];
+    for (NSUInteger i =count-1 ; i > (count - 10);i--){
+        
+        Gamer *gamer = [allGamerScoreArray objectAtIndex:i];
+        
+        NSUInteger score= gamer.score;
+        NSString *name =gamer.name;
+        NSString *time = gamer.time;
+        
+        bestPlayers = [NSString stringWithFormat:@"Nom: %@\r Score: %lu \r Temps: %@ \r", name,(unsigned long)score,time];
+        [bestPlayersArray addObject:bestPlayers];
+        
+    }
+
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Top 10" message:[NSString stringWithFormat:@"%@",bestPlayersArray] preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 - (NSDictionary *) indexKeyedDictionaryFromArray:(NSArray *)array
 {

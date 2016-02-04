@@ -16,6 +16,9 @@
     NSString *idActorRandom;
     BOOL firstGame;
     IBOutlet UILabel *bestScore;
+    NSString *bestPlayers;
+    NSMutableArray *bestPlayersArray;
+
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *movieCoverImageView;
@@ -24,6 +27,7 @@
 @property (strong, nonatomic) NSMutableDictionary *actorInMovieDict;
 @property (strong, nonatomic) NSMutableDictionary *actorInNotMovieDict;
 @property (strong, nonatomic) NSMutableDictionary *gamerDict;
+
 
 
 @property (strong, nonatomic) IBOutlet UIButton *startGameButton;
