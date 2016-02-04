@@ -3,6 +3,7 @@
 
 NSString *const ACTOR_NOT_IN_MOVIE_STORE = @"actorNotInMovie";
 NSString *const ACTOR_IN_MOVIE_STORE = @"actorInMovie";
+NSString *const GAMER_STORE = @"gamer";
 NSString *const MOVIE_STORE = @"movie";
 NSString *const CONFIG_STORE = @"config1.0.0.data";
 
@@ -35,7 +36,7 @@ NSString *const CONFIG_STORE = @"config1.0.0.data";
     @try {
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                               _bestScore,@"bestScore",
-                                                            nil];
+                              nil];
         
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -50,6 +51,11 @@ NSString *const CONFIG_STORE = @"config1.0.0.data";
     }
 }
 
+- (NSString *) gamerFile{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    return [NSString stringWithFormat:@"%@/%@.data", documentsDirectory,GAMER_STORE];
+}
 - (NSString *) actorNotInMovieFile{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -77,6 +83,17 @@ NSString *const CONFIG_STORE = @"config1.0.0.data";
     }
     return self.movieList;
 }
+- (NSMutableDictionary *)loadGamer {
+    NSMutableDictionary *dict = nil;
+    NSLog(@"%@",[self gamerFile]);
+    NSData * data = [NSData dataWithContentsOfFile:[self gamerFile]];
+    if(data != nil)
+    {
+        dict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        self.gamerList = dict;
+    }
+    return self.gamerList;
+}
 - (NSMutableDictionary *)loadActorNotInMovie {
     NSMutableDictionary *dict = nil;
     NSLog(@"%@",[self actorNotInMovieFile]);
@@ -99,6 +116,14 @@ NSString *const CONFIG_STORE = @"config1.0.0.data";
         self.actorInMovieList = dict;
     }
     return self.actorInMovieList;
+}
+- (BOOL)archivingGamer:(NSMutableDictionary *)gamerDict {
+    
+    NSData * data = [NSKeyedArchiver archivedDataWithRootObject:[gamerDict mutableCopy]];
+    if ([data writeToFile:[self gamerFile] atomically:YES])
+        return true;
+    else
+        return false;
 }
 - (BOOL)archivingActorNotInMovie:(NSMutableDictionary *) actorDict {
     

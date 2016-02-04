@@ -12,6 +12,7 @@
 		9216117B1C5A5A6A0089D14C /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 9216117A1C5A5A6A0089D14C /* Movie.m */; };
 		92F5D6AC1C577D5F00F92696 /* Actor.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F5D6AB1C577D5F00F92696 /* Actor.m */; };
 		92F5D6C01C5A19C300F92696 /* UserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F5D6BF1C5A19C300F92696 /* UserConfig.m */; };
+		92FA676E1C61090100C3B980 /* Gamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FA676C1C61090000C3B980 /* Gamer.m */; };
 		92FF493B1C527A73000DC58F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF493A1C527A73000DC58F /* main.m */; };
 		92FF493E1C527A73000DC58F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF493D1C527A73000DC58F /* AppDelegate.m */; };
 		92FF49411C527A73000DC58F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF49401C527A73000DC58F /* ViewController.m */; };
@@ -60,6 +61,8 @@
 		92F5D6AB1C577D5F00F92696 /* Actor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Actor.m; sourceTree = "<group>"; };
 		92F5D6BE1C5A193600F92696 /* UserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserConfig.h; sourceTree = "<group>"; };
 		92F5D6BF1C5A19C300F92696 /* UserConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserConfig.m; sourceTree = "<group>"; };
+		92FA676C1C61090000C3B980 /* Gamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gamer.m; sourceTree = "<group>"; };
+		92FA676D1C61090100C3B980 /* Gamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gamer.h; sourceTree = "<group>"; };
 		92FF49361C527A72000DC58F /* DaMovieQuizz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaMovieQuizz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92FF493A1C527A73000DC58F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		92FF493C1C527A73000DC58F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 		92F5D6A91C577D5600F92696 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				92FA676D1C61090100C3B980 /* Gamer.h */,
+				92FA676C1C61090000C3B980 /* Gamer.m */,
 				92F5D6AA1C577D5F00F92696 /* Actor.h */,
 				92F5D6AB1C577D5F00F92696 /* Actor.m */,
 				921611791C5A5A6A0089D14C /* Movie.h */,
@@ -471,6 +476,7 @@
 				92FF49881C529AF4000DC58F /* SBJSON.m in Sources */,
 				921611761C5A22390089D14C /* DataSourceManager.m in Sources */,
 				9216117B1C5A5A6A0089D14C /* Movie.m in Sources */,
+				92FA676E1C61090100C3B980 /* Gamer.m in Sources */,
 				92FF49871C529AF4000DC58F /* NSString+SBJSON.m in Sources */,
 				92FF49411C527A73000DC58F /* ViewController.m in Sources */,
 				92FF498C1C529AF4000DC58F /* NSObject+NSNull_JSON.m in Sources */,

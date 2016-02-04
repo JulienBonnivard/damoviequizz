@@ -23,6 +23,9 @@
 @property (strong, nonatomic) NSMutableDictionary *moviesDict;
 @property (strong, nonatomic) NSMutableDictionary *actorInMovieDict;
 @property (strong, nonatomic) NSMutableDictionary *actorInNotMovieDict;
+@property (strong, nonatomic) NSMutableDictionary *gamerDict;
+
+
 @property (strong, nonatomic) IBOutlet UIButton *startGameButton;
 @property (strong, nonatomic) NSArray *moviesArray;
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;

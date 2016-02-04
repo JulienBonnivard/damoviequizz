@@ -104,7 +104,6 @@
             
             
             [[[UserConfig sharedInstance] movieList]setDictionary:moviesDict];
-            
             [[UserConfig sharedInstance] archivingMovie:moviesDict];
             
             //NSLog(@"Movie Id : %@ MoviesDict : %@ ",idMovieSend ,[[[moviesDict objectForKey:idMovie]idActors]allKeys]);

@@ -16,7 +16,7 @@
 @end
 
 @implementation ViewController
-@synthesize moviesDict,arrayMovie,actorInMovieDict,randomStringId,idMovie,idActor,scoreLabel,progress,imagesBaseUrlString,actorInNotMovieDict,startGameButton;
+@synthesize moviesDict,arrayMovie,actorInMovieDict,randomStringId,idMovie,idActor,scoreLabel,progress,imagesBaseUrlString,actorInNotMovieDict,startGameButton,gamerDict;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,7 +27,8 @@
     progress.hidden=YES;
     firstGame = YES;
     bestScore.text= [NSString stringWithFormat:@"Meilleur score : %@",[[UserConfig sharedInstance]bestScore]];
-
+    //gamerDict = [[NSMutableDictionary alloc] init];
+    
 }
 
 -(IBAction)beginGame:(id)sender{
@@ -35,9 +36,11 @@
         moviesDict = [[UserConfig sharedInstance]loadMovie];
         actorInMovieDict = [[UserConfig sharedInstance]loadActorInMovie];
         actorInNotMovieDict = [[UserConfig sharedInstance]loadActorNotInMovie];
+        gamerDict = [[UserConfig sharedInstance]loadGamer];
         urlFront =[[DataSourceManager sharedInstance]imagesBaseUrlString];
-        
         firstGame= NO;
+        scoreLabel.text=@"0";
+        
     }
     // NSLog(@"count :%lu",  (unsigned long)[actorInNotMovieDict count]);
     progress.hidden= NO;
@@ -49,7 +52,6 @@
 -(void)enableButtons{
     startGameButton.hidden=YES;
     startGameButton.enabled=NO;
-    
     yesButton.enabled=YES;
     noButton.enabled=YES;
     yesButton.hidden=NO;
@@ -190,7 +192,7 @@
     else{
         if (!goodAnswer){
             [self saveScore];
-
+            
         }
     }
 }
@@ -204,32 +206,101 @@
     
     else{
         [self saveScore];
-           }
+    }
 }
+
+
 -(void)saveScore{
-    [self stopTimer];
+    if(gamerDict == nil)
+        gamerDict = [[NSMutableDictionary alloc] init];
+    
+    BOOL top10= YES;
+    
     [self disableButtons];
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Mauvaise réponse" message:@"GAME OVER" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-    [alertController addAction:okAction];
-    [self presentViewController:alertController animated:YES completion:nil];
-    
     int scoreInt = [scoreLabel.text integerValue];
     int bestScoreInt =[[[UserConfig sharedInstance] bestScore ]integerValue];
     
-    if (scoreInt <= bestScoreInt){
-        
-    }
-    else{
-        [[UserConfig sharedInstance]setBestScore:scoreLabel.text];
-        [[UserConfig sharedInstance]Save];
-        [[UserConfig sharedInstance]Load];
-        
-        bestScore.text=[NSString stringWithFormat:@"Meilleur score : %@",[[UserConfig sharedInstance]bestScore]];
-    }
-    scoreLabel.text=[NSString stringWithFormat:@"0"];
+    NSArray* allGamerScoreArray = [gamerDict allValues];
     
+    NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"score" ascending:NO];
+    NSArray *descriptors = [NSArray arrayWithObject:valueDescriptor];
+    allGamerScoreArray = [allGamerScoreArray sortedArrayUsingDescriptors:descriptors];
+    
+    int maxIndex = MIN(10, allGamerScoreArray.count) - 1;
+    if (allGamerScoreArray.count < 10)
+    {
+        top10 = YES;
+    }
+    else if (maxIndex > 0)
+    {
+        Gamer* gamer = [allGamerScoreArray objectAtIndex:maxIndex];
+        if ([scoreLabel.text integerValue] <= gamer.score){
+            top10 = NO;
+        }
+        
+        if (top10 == NO){
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"GAME OVER" message:[NSString stringWithFormat:@"Votre score : %@ \r Durée : %@",scoreLabel.text,progress.text] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+            [self stopTimer];
+            scoreLabel.text=[NSString stringWithFormat:@"0"];
+        }
+        else{
+            // use UIAlertController
+            UIAlertController *alert= [UIAlertController
+                                       alertControllerWithTitle:@"GAME OVER"
+                                       message:[NSString stringWithFormat:@"Votre score : %@ \r Durée : %@ \r Vous faites partie des 10 meilleurs joueurs, voulez-vous vous ajouter au classement ?",scoreLabel.text,progress.text]
+                                       preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * action){
+                                                           //Do Some action here
+                                                           UITextField *textField = alert.textFields[0];
+                                                           
+                                                           int random1 = arc4random() %(1000)-1; //
+                                                           NSString* randomString1 = [NSString stringWithFormat:@"%d",random1];
+                                                           int random2 = arc4random() %(100000)-1; //
+                                                           NSString* randomString2 = [NSString stringWithFormat:@"%d",random2];
+                                                           NSString*idGamer = [NSString stringWithFormat:@"%@%@%@",randomString1,scoreLabel.text,randomString2];
+                                                           
+                                                           Gamer *newGamer = [[Gamer alloc] init:idGamer score:scoreLabel.text name:textField.text time:progress.text];
+                                                           [gamerDict setObject:newGamer forKey:idGamer];
+                                                           [[[UserConfig sharedInstance] gamerList]setDictionary:gamerDict];
+                                                           [[UserConfig sharedInstance] archivingGamer:gamerDict];
+                                                           
+                                                           [self stopTimer];
+                                                           scoreLabel.text=[NSString stringWithFormat:@"0"];
+                                                           
+                                                       }];
+            UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction * action) {
+                                                               
+                                                               NSLog(@"cancel btn");
+                                                               
+                                                               [alert dismissViewControllerAnimated:YES completion:nil];
+                                                               
+                                                           }];
+            
+            [alert addAction:ok];
+            [alert addAction:cancel];
+            [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+                textField.placeholder = @"Saisissez votre nom";
+                textField.keyboardType = UIKeyboardTypeDefault;
+            }];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+            
+            if (scoreInt > bestScoreInt){
+                [[UserConfig sharedInstance]setBestScore:scoreLabel.text];
+                [[UserConfig sharedInstance]Save];
+                [[UserConfig sharedInstance]Load];
+            }
+            
+            
+            bestScore.text=[NSString stringWithFormat:@"Meilleur score : %@",[[UserConfig sharedInstance]bestScore]];
+        }
+    }
 }
 - (NSDictionary *) indexKeyedDictionaryFromArray:(NSArray *)array
 {
