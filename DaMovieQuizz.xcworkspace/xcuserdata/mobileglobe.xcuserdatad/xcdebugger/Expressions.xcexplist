@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "__48-[DataSourceManager saveActorInMovie:posterURL:]_block_invoke:DataSourceManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewController loadActor:]:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "moviesDict">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[JLTMDbClient GET:withParameters:andResponseBlock:]:JLTMDbClient.m">
+      </ContextState>
+      <ContextState
+         contextName = "__25-[ViewController refresh]_block_invoke:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.moviesArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewController viewDidLoad]:ViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__35-[ViewController loadConfiguration]_block_invoke:ViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__29-[ViewController viewDidLoad]_block_invoke:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "posterRandomString">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ViewController beginGame:]:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "moviesDict">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[DataSourceManager saveMovie]:DataSourceManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "__30-[DataSourceManager saveMovie]_block_invoke:DataSourceManager.m">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

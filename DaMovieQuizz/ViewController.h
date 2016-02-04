@@ -6,7 +6,7 @@
 //  Copyright © 2016 JB. All rights reserved.
 //
 
-#import "Actor.h"
+//#import "Actor.h"
 
 @interface ViewController : UIViewController{
     NSString *urlFront;
