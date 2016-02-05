@@ -11,6 +11,7 @@
 
 @interface ViewController : UIViewController{
     NSString *urlFront;
+    IBOutlet UILabel *labelText;
     IBOutlet UIButton *yesButton;
     IBOutlet UIButton *noButton;
     NSString* algoBoolActor;

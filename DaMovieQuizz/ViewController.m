@@ -28,23 +28,38 @@
     firstGame = YES;
     bestScore.text= [NSString stringWithFormat:@"Meilleur score : %@",[[UserConfig sharedInstance]bestScore]];
 }
-
--(IBAction)beginGame:(id)sender{
-    if (firstGame){
-        moviesDict = [[UserConfig sharedInstance]loadMovie];
-        actorInMovieDict = [[UserConfig sharedInstance]loadActorInMovie];
-        actorInNotMovieDict = [[UserConfig sharedInstance]loadActorNotInMovie];
-        gamerDict = [[UserConfig sharedInstance]loadGamer];
-        urlFront =[[DataSourceManager sharedInstance]imagesBaseUrlString];
-        firstGame= NO;
-        scoreLabel.text=@"0";
-    }
-    // NSLog(@"count :%lu",  (unsigned long)[actorInNotMovieDict count]);
-    progress.hidden= NO;
-    [self startTimer];
-    [self loadGame];
+- (BOOL)connected
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    return !(networkStatus == NotReachable);
     
-    [self enableButtons];
+}
+-(IBAction)beginGame:(id)sender{
+    if([self connected]){
+        if (firstGame){
+            moviesDict = [[UserConfig sharedInstance]loadMovie];
+            actorInMovieDict = [[UserConfig sharedInstance]loadActorInMovie];
+            actorInNotMovieDict = [[UserConfig sharedInstance]loadActorNotInMovie];
+            gamerDict = [[UserConfig sharedInstance]loadGamer];
+            urlFront =[[DataSourceManager sharedInstance]imagesBaseUrlString];
+            firstGame= NO;
+            scoreLabel.text=@"0";
+        }
+        // NSLog(@"count :%lu",  (unsigned long)[actorInNotMovieDict count]);
+        progress.hidden= NO;
+        labelText.hidden=YES;
+        [self startTimer];
+        [self loadGame];
+        
+        [self enableButtons];
+    }
+    else{
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Impossible de lancer la partie" message:@"Veuillez vérifier votre connexion internet et essayez de nouveau" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
 }
 -(void)enableButtons{
     startGameButton.hidden=YES;

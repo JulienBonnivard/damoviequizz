@@ -12,7 +12,7 @@
     if(moviesDict == nil)
         moviesDict = [[NSMutableDictionary alloc] init];
 
-    __block UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Erreur lors de la sauvegarde des films", @"") message:NSLocalizedString(@"Veuillez relancer l'application", @"") delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Ok", @""), nil];
+    __block UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Erreur de connexion avec le serveur Data Movie Base", @"") message:NSLocalizedString(@"Veuillez relancer l'application", @"") delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Ok", @""), nil];
     
     for (int i = 1; i <= 4; i++){
         
@@ -48,12 +48,14 @@
                 //   NSLog(@"COUNT ARRAY MOVIES : %lu et RANDOM ID : %@", (unsigned long)[array count], randomStringId);
                 //   NSLog(@"DICO MOVIE : %@", [[[UserConfig sharedInstance]movieList]description]);
             }else{
-              //  [errorAlertView show];
+     //           [errorAlertView show];
             }
         }];
     }
 }
 -(void)saveActorInMovie : (NSString *)idMovieSend posterURL:(NSString*)posterURL{
+    
+    
     if(actorInMovieDict == nil)
         actorInMovieDict = [[NSMutableDictionary alloc] init];
     
@@ -116,6 +118,8 @@
 }
 -(void)saveActorNotInMovie{
     
+     __block UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Erreur de connexion avec le serveur Data Movie Base", @"") message:NSLocalizedString(@"Veuillez relancer l'application", @"") delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Ok", @""), nil];
+    
     actorNotInMovieDict = [[NSMutableDictionary alloc] init];
     for (int i = 1; i <= 10; i++){
         
@@ -143,18 +147,18 @@
                 [[UserConfig sharedInstance] archivingActorNotInMovie: actorNotInMovieDict];
                 
             }else{
-                // [errorAlertView show];
+           //      [errorAlertView show];
             }
         }];
     }
 }
 - (void) loadConfiguration{
-    __block UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Erreur lors de la sauvegarde de la configuration", @"") message:NSLocalizedString(@"Veuillez fermer l'application et relancer", @"") delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Ok", @""), nil];
+    __block UIAlertView *errorAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Erreur de connexion avec le serveur Data Movie Base", @"") message:NSLocalizedString(@"Veuillez fermer l'application et relancer", @"") delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Ok", @""), nil];
     [[JLTMDbClient sharedAPIInstance] GET:kJLTMDbConfiguration withParameters:nil andResponseBlock:^(id response, NSError *error) {
         if (!error)
             imagesBaseUrlString = [response[@"images"][@"base_url"] stringByAppendingString:@"w92"];
         else{
-            //[errorAlertView show];
+            [errorAlertView show];
         }
     }];
 }
