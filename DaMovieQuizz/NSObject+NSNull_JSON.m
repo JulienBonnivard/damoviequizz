@@ -1,6 +1,5 @@
 //
 //  NSObject+NSNull_JSON.m
-//  KakiLuki
 //
 //  Created by Julien on 02/11/2015.
 //

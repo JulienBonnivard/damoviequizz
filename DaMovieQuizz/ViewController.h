@@ -7,9 +7,11 @@
 //
 
 //#import "Actor.h"
+// add a line to test
 
 @interface ViewController : UIViewController{
     NSString *urlFront;
+    IBOutlet UILabel *labelText;
     IBOutlet UIButton *yesButton;
     IBOutlet UIButton *noButton;
     NSString* algoBoolActor;
